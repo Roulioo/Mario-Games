@@ -1,0 +1,43 @@
+body {
+    margin:0;
+    padding:0;
+    background-image: url("../assets/mario.gif");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#victoire{
+    position: relative;
+    top: -3rem;
+    left : -13%;
+    font-style: italic;
+    font-size: 250%;
+    color: black;
+}
+
+p{
+    position: absolute;
+    top:70%;
+    left : 45%;
+    font-style: italic;
+    font-size: 120%;
+    color: black;
+}
+
+span{
+    position: absolute;
+    top:80%;
+    left: 44%;
+    font-style: italic;
+    font-size: 120%;
+    color: black;
+}
+
+#auteur{
+    color : black;
+    position : absolute;
+    top: 94%; left: 1%;
+    font-style : italic;
+    font-size : 30px;
+}
