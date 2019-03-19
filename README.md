@@ -9,6 +9,6 @@ Positionnez-vous dans le répertoire et lancez la commande suivante :
 
 npm start
 
-Naviguez ensuite vers l'URL : http://localhost:1337/
+Naviguez ensuite vers l'URL : http://127.0.0.1:8080
 
 Vous pouvez contrôler le pad grâce à la souris ou grâce au Leap Motion si il est branché ! Enjoy! 🙂
