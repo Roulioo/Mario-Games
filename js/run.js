@@ -10,6 +10,8 @@ function preload() {
     game.load.image('brique', 'assets/brique.png');
     game.load.image('spikes', 'assets/spikes.png');
     //game.load.image('ground', 'assets/background.jpg');
+    // -- Chargement de nos son utilisé dans le jeux 
+    game.load.audio('musique_fond', 'sounds/musique_fond.mp3');
 }
 
 // --Déclarations de nos variables :
@@ -25,7 +27,12 @@ let trapsGroup;
 let peach; 
 let brique; 
 let spikes;
+let music;
 //let ground;
+
+// -- Déclaration de variable timer 
+let timerText;
+let timer = 0;
 
 //Fonction permettant la création du jeu :
 function create() {
@@ -33,10 +40,13 @@ function create() {
     // -- On démarre le system Physics.ARCADE
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    // -- Dimension du monde
     game.world.setBounds(0, 0, 3000, 600);
 
+    // -- Affichage de notre background
     background = game.add.tileSprite(0, 0, 3000, 600, 'background');
 
+    // -- On définit la gravity en y 
     game.physics.arcade.gravity.y = 300;
 
     // -- Appelle de nos fonctions
@@ -70,6 +80,17 @@ function create() {
     // -- Utiliser pour gérer les touches du clavier 
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+    // -- Timing
+    timerText = game.add.text(5, 5, 'Temps: 0.0s', { font: '18px Arial', fill: '#ffff00' });
+    // -- Gére l'incrémentation du timer 
+    setInterval(() => timer += 100, 100);
+
+    // -- Ajout de notre son au jeux
+    music = game.add.audio('musique_fond');
+
+    // -- Play de la music
+    music.play();
 
 }
 
@@ -112,16 +133,20 @@ function update() {
     // -- on appelle notre fonction update du player
     player_update();
 
+    // -- Affichage du temps 
+    timerText.setText('Temps: ' + (timer / 1000).toFixed(1) + 's');
+
 }
 
-//Fonction du rendu de jeu :
+// -- Fonction du rendu de jeu :
 function render () {
 
-    // game.debug.text(game.time.physicsElapsed, 32, 32);
+    //game.debug.text(game.time.physicsElapsed, 32, 32);
     //game.debug.body(player);
     //game.debug.body(ground);
     //game.debug.body(peach);
     //game.debug.body(brique);
     //game.debug.bodyInfo(player, 16, 24);
+    game.debug.soundInfo(music, 20, 32);
 
 }
