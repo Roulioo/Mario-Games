@@ -11,7 +11,7 @@ function traps_create() {
         [x, y, width]
     ]
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 20; i++) {
         let [x, y, width] = TRAP_POSITIONS[i];
         TRAP_POSITIONS.push([TRAP_POSITIONS[i][0] + 120, y, width]);
         let s = new Phaser.TileSprite(game, x, 545, width, 111, 'spikes');

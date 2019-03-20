@@ -5,7 +5,7 @@ const MOVE_AREA = (window.innerWidth / 4);
 function player_create() {
 
     // -- Ajouts des sprites au jeux
-    player = game.add.sprite(32, 320, 'dude');
+    player = game.add.sprite(32, 0, 'mario');
 
     // -- Activation du stystème Physics.ARCADE sur le player et peach 
     game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -14,24 +14,24 @@ function player_create() {
     player.body.collideWorldBounds = true;
     player.body.gravity.y = 1000;
     player.body.maxVelocity.y = 500;
-    player.body.setSize(20, 32, 5, 16);
+    player.scale.setTo(0.7, 0.7); // -- gérer la taille de mario
 
     // -- Permet de gérer les différents sprites de notre player 
-    player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('turn', [4], 20, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
+    player.animations.add('left', [1, 2, 3, 4, 5], 10, true);
+    //player.animations.add('turn', [5], 20, true);
+    player.animations.add('right', [7, 8, 9, 10, 11], 10, true);
 }
 
 function peach_create(){
 
-    peach = game.add.sprite(600, 200, 'peach');
+    peach = game.add.sprite(2098, 485, 'peach');
     game.physics.enable(peach, Phaser.Physics.ARCADE);
 
     // -- Collision / Gravité / Vélocité pour peach / Taille
-    peach.body.collideWorldBounds = true;
-    peach.body.gravity.y = 1000;
-    peach.body.maxVelocity.y = 500;
-    peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
+    peach.body.collideWorldBounds = false;
+    peach.body.gravity.y = 0; // 1000
+    peach.body.maxVelocity.y = 0; // 500
+    peach.scale.setTo(0.1, 0.1); // -- gérer la taille de la princesse 
 
 }
 
@@ -81,7 +81,7 @@ function player_move_leap() {
     }
 }
 
-// -- Function déplacement du joueur
+// -- Function déplacement du joueur sans le Leap Motion
 function player_move() {
 
     if (cursors.left.isDown){
@@ -109,6 +109,7 @@ function player_move() {
         if (facing != 'idle')
         {
             player.animations.stop();
+            //player.frame = 5;
 
             if (facing == 'left')
             {
@@ -116,7 +117,7 @@ function player_move() {
             }
             else
             {
-                player.frame = 5;
+                player.frame = 6;
             }
 
             facing = 'idle';

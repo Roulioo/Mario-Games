@@ -4,13 +4,12 @@ let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload:
 // -- Fonction preload du jeu :
 function preload() {
     // -- Chargement de nos images utilisées dans le jeux
-    game.load.spritesheet('dude', 'assets/img/dude.png', 32, 48);
+    game.load.spritesheet('mario', 'assets/img/mario_final.png', 40, 40);
     game.load.image('background', 'assets/img/background.jpg');
     game.load.image('peach', 'assets/img/peach.png');
     game.load.image('brique', 'assets/img/brique.png');
     game.load.image('spikes', 'assets/img/spikes.png');
-    //game.load.image('ground', 'assets/background.jpg');
-    // -- Chargement de nos son utilisés dans le jeux 
+    // -- Chargement de nos son utilisé dans le jeux 
     game.load.audio('musique_fond', 'assets/sounds/musique_fond.mp3');
     game.load.audio('saut', 'assets/sounds/saut.mp3');
     game.load.audio('fall', 'assets/sounds/fall.mp3');
@@ -26,23 +25,12 @@ let background;
 let platformsGroup;
 let platformSprite;
 let trapsGroup;
-let peach; 
-let brique; 
+let peach;
+let brique;
 let spikes;
 let music;
 let vieText;
 let vie = 3;
-//let saut;
-//let fall; 
-//let ground;
-
-//let minus_life = vie - 1;
-
-//let minus;
-
-// -- Déclaration de variable timer 
-//let timerText;
-//let timer = 0;
 
 //Fonction permettant la création du jeu :
 function create() {
@@ -51,26 +39,30 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // -- Dimension du monde
-    game.world.setBounds(0, 0, 3000, 600);
+    game.world.setBounds(0, 0, 2320, 600);
 
     // -- Affichage de notre background
-    background = game.add.tileSprite(0, 0, 3000, 600, 'background');
+    background = game.add.tileSprite(0, 0, 2320, 600, 'background');
 
     // -- On définit la gravity en y 
     game.physics.arcade.gravity.y = 300;
 
-    // -- Appelle de nos fonctions
+    // -- Appelle de nos fonctions :
     player_create();
+    peach_create();
     platforms_create();
     traps_create();
-    peach_create();
 
     // -- Rentrer en collision avec les limites du monde comme s'il s'aggissait d'éléments rigides
-    player.body.collideWorldBounds = true; 
+    player.body.collideWorldBounds = true;
     // -- Immobilité du joueur 
     peach.body.immovable = false;
     // -- Gravité lors de la descente 
     peach.body.allowGravity = true;
+
+    // -- Utiliser pour gérer les touches du clavier 
+    cursors = game.input.keyboard.createCursorKeys();
+    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     // -- Ajout de notre son au jeux
     music = game.add.audio('musique_fond');
@@ -80,19 +72,11 @@ function create() {
     // -- Play de la music
     music.play();
 
-    // -- Utiliser pour gérer les touches du clavier 
-    cursors = game.input.keyboard.createCursorKeys();
-    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-    // -- Timing
-    //timerText = game.add.text(5, 5, 'Temps: 0.0s', { font: '18px Arial', fill: '#ffff00' });
-    // -- Gére l'incrémentation du timer 
-    //setInterval(() => timer += 100, 100);
-
     //Vie :
     vieText = game.add.text(5, 5, 'Vie(s) : ' + vie, { font: '18px Arial', fill: '#ffffff' });
     vieText.x = 25;
     vieText.y = 25;
+    vieText.fixedToCamera = true;
 
 }
 
@@ -113,36 +97,25 @@ function update() {
     game.physics.arcade.collide(peach, trapsGroup);
     
     //console.log(vie);
-
     game.physics.arcade.collide(player, trapsGroup, (player, platform) => {
         console.log(vie);
         let minus_vie = vie - 1
         vieText.setText('Vie(s) : ' + (minus_vie));
         fall.play();
-        //crash.play();
-        //console.log("Life :",minus_vie);
+        //console.log("Life :", minus_vie);
         //player = game.add.sprite(32, 320, 'dude');
         player.kill();
         //peach.kill();
         facing = 'right';
         player_create();
         vie = minus_vie;
-    });  
+    })
 
     if(jumpButton.isDown){
         saut.play();
     }
 
-    // -- On repasse minus 
-    //minus = false;
-
-    //player.kill();
-    //alert("GAME OVER !");
-    //window.location = "game_over.html"; // -- on appelle notre page game over 
-
     game.physics.arcade.collide(player, peach, (player, platform) => {
-        //peach.kill();
-        //alert("WELL DONE !");
         window.location = "victoire.html"; // -- on appelle notre page victoire 
     });
 
@@ -159,20 +132,19 @@ function update() {
 
     // -- Gérer la vie = 0 pour le game over 
 
-    if(vie <= 0){
+    if (vie <= 0) {
         window.location = "gameover.html"; // -- on appelle notre page game over
     }
 
-    // -- Affichage du temps 
-    //timerText.setText('Temps: ' + (timer / 1000).toFixed(1) + 's');
+    minus = false;
 
 }
 
 // -- Fonction du rendu de jeu :
-function render () {
+function render() {
 
     //game.debug.text(game.time.physicsElapsed, 32, 32);
-    //game.debug.body(player);
+    // game.debug.body(player);
     //game.debug.body(ground);
     //game.debug.body(peach);
     //game.debug.body(brique);
