@@ -1,14 +1,17 @@
-Jeu Breakout avec Leap Motion
+# Jeu Breakout avec Leap Motion
+
 Simple jeu breakout, fonctionnant avec un Leap Motion
 
-Installer le projet
-Clonez le repository et installez les dépendances : npm install
+## Installer le projet
 
-Lancer le jeu
+Clonez le repository et installez les dépendances : `npm install`
+
+## Lancer le jeu
+
 Positionnez-vous dans le répertoire et lancez la commande suivante :
 
-npm start
+`npm start`
 
-Naviguez ensuite vers l'URL : http://127.0.0.1:8080
+Naviguez ensuite vers l'URL : `http://127.0.0.1:8080`
 
 Vous pouvez contrôler le pad grâce à la souris ou grâce au Leap Motion si il est branché ! Enjoy! 🙂
