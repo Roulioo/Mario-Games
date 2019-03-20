@@ -1,7 +1,7 @@
 body {
     margin:0;
     padding:0;
-    background-image: url("assets/img/mario.gif");
+    background-image: url("../assets/img/mario.gif");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;

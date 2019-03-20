@@ -6,11 +6,9 @@ function player_create() {
 
     // -- Ajouts des sprites au jeux
     player = game.add.sprite(32, 320, 'dude');
-    peach = game.add.sprite(600, 200, 'peach')
 
     // -- Activation du stystème Physics.ARCADE sur le player et peach 
     game.physics.enable(player, Phaser.Physics.ARCADE);
-    game.physics.enable(peach, Phaser.Physics.ARCADE);
 
     // -- Collision / Gravité / Vélocité pour player / Taille 
     player.body.collideWorldBounds = true;
@@ -18,16 +16,23 @@ function player_create() {
     player.body.maxVelocity.y = 500;
     player.body.setSize(20, 32, 5, 16);
 
-    // -- Collision / Gravité / Vélocité pour peach / Taille
-    peach.body.collideWorldBounds = false;
-    peach.body.gravity.y = 1000;
-    peach.body.maxVelocity.y = 500;
-    peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
-
     // -- Permet de gérer les différents sprites de notre player 
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('turn', [4], 20, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
+}
+
+function peach_create(){
+
+    peach = game.add.sprite(600, 200, 'peach');
+    game.physics.enable(peach, Phaser.Physics.ARCADE);
+
+    // -- Collision / Gravité / Vélocité pour peach / Taille
+    peach.body.collideWorldBounds = true;
+    peach.body.gravity.y = 1000;
+    peach.body.maxVelocity.y = 500;
+    peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
+
 }
 
 // -- Function update du joueur 
@@ -48,7 +53,7 @@ function player_update()  {
 // -- Function déplacement du leap 
 function player_move_leap() {
 
-    // -- Déplacement du leap motion et des positions personnages 
+    // -- Déplacement du leap motion
     if (LEAP.position.x > game.camera.width * 0.5 + MOVE_AREA) {
         player.body.velocity.x = 150;
         player.animations.play('right');
@@ -69,7 +74,6 @@ function player_move_leap() {
         }
     }
 
-    // -- Si on grap alors on active le jump
     if (LEAP.grab && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
     {
         player.body.velocity.y = -500;

@@ -10,7 +10,7 @@ function preload() {
     game.load.image('brique', 'assets/img/brique.png');
     game.load.image('spikes', 'assets/img/spikes.png');
     //game.load.image('ground', 'assets/background.jpg');
-    // -- Chargement de notre son utilisé dans le jeux 
+    // -- Chargement de nos son utilisé dans le jeux 
     game.load.audio('musique_fond', 'assets/sounds/musique_fond.mp3');
 }
 
@@ -28,11 +28,17 @@ let peach;
 let brique; 
 let spikes;
 let music;
+let vieText;
+let vie = 3;
 //let ground;
 
+//let minus_life = vie - 1;
+
+//let minus;
+
 // -- Déclaration de variable timer 
-let timerText;
-let timer = 0;
+//let timerText;
+//let timer = 0;
 
 //Fonction permettant la création du jeu :
 function create() {
@@ -53,22 +59,7 @@ function create() {
     player_create();
     platforms_create();
     traps_create();
-
-    //ground = game.add.tileSprite(0, 545, 1000, 55, 'ground');
-    //brique = game.add.tileSprite(850, 250, 24, 24, 'brique');
-    //spikes = game.add.tileSprite(850, 250, 120, 120, 'spikes');
-
-    //game.physics.enable([ player, ground ], Phaser.Physics.ARCADE);
-    //game.physics.enable([ peach, brique ], Phaser.Physics.ARCADE);
-
-    //ground.body.collideWorldBounds = true;
-    //ground.body.immovable = true;
-    //ground.body.allowGravity = false;
-
-    //brique.body.collideWorldBounds = true;
-    //brique.body.immovable = true;
-    //brique.body.allowGravity = false;
-    //brique.scale.setTo(0.4, 0.4);
+    peach_create();
 
     // -- Rentrer en collision avec les limites du monde comme s'il s'aggissait d'éléments rigides
     player.body.collideWorldBounds = false; 
@@ -82,9 +73,9 @@ function create() {
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     // -- Timing
-    timerText = game.add.text(5, 5, 'Temps: 0.0s', { font: '18px Arial', fill: '#ffff00' });
+    //timerText = game.add.text(5, 5, 'Temps: 0.0s', { font: '18px Arial', fill: '#ffff00' });
     // -- Gére l'incrémentation du timer 
-    setInterval(() => timer += 100, 100);
+    //setInterval(() => timer += 100, 100);
 
     // -- Ajout de notre son au jeux
     music = game.add.audio('musique_fond');
@@ -92,12 +83,16 @@ function create() {
     // -- Play de la music
     music.play();
 
+    //Vie :
+    vieText = game.add.text(5, 5, 'Vie(s) : ' + vie, { font: '18px Arial', fill: '#ffffff' });
+    vieText.x = 25;
+    vieText.y = 25;
+
 }
 
 /* Fonction uptade gére ici les collisions player / sol puis le déplacement de la caméra */
 
 function update() {
-
 
     // -- Centrer le canvas 
     game.scale.pageAlignHorizontally = true;
@@ -110,11 +105,28 @@ function update() {
     game.physics.arcade.collide(player, platformsGroup);
     game.physics.arcade.collide(peach, platformsGroup);
     game.physics.arcade.collide(peach, trapsGroup);
+    
+    //console.log(vie);
+
     game.physics.arcade.collide(player, trapsGroup, (player, platform) => {
-        //player.kill();
-        //alert("GAME OVER !");
-        window.location = "gameover.html"; // -- on appelle notre page game over 
-    });
+        console.log(vie);
+        let minus_vie = vie - 1
+        vieText.setText('Vie(s) : ' + (minus_vie));
+        console.log("Life :",minus_vie);
+        //player = game.add.sprite(32, 320, 'dude');
+        player.kill();
+        //peach.kill();
+        facing = 'right';
+        player_create();
+        vie = minus_vie;
+    });  
+
+    // -- On repasse minus 
+    //minus = false;
+
+    //player.kill();
+    //alert("GAME OVER !");
+    //window.location = "game_over.html"; // -- on appelle notre page game over 
 
     game.physics.arcade.collide(player, peach, (player, platform) => {
         //peach.kill();
@@ -133,8 +145,14 @@ function update() {
     // -- on appelle notre fonction update du player
     player_update();
 
+    // -- Gérer la vie = 0 pour le game over 
+
+    if(vie <= 0){
+        window.location = "gameover.html"; // -- on appelle notre page game over
+    }
+
     // -- Affichage du temps 
-    timerText.setText('Temps: ' + (timer / 1000).toFixed(1) + 's');
+    //timerText.setText('Temps: ' + (timer / 1000).toFixed(1) + 's');
 
 }
 
@@ -147,6 +165,6 @@ function render () {
     //game.debug.body(peach);
     //game.debug.body(brique);
     //game.debug.bodyInfo(player, 16, 24);
-    game.debug.soundInfo(music, 20, 32);
+    //game.debug.soundInfo(music, 20, 32);
 
 }
