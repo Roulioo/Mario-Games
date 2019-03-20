@@ -1,6 +1,6 @@
-# Jeu Breakout avec Leap Motion
+# Jeu Mario avec Leap Motion
 
-Simple jeu breakout, fonctionnant avec un Leap Motion
+Simple jeu Mario, fonctionnant avec un Leap Motion
 
 ## Installer le projet
 
