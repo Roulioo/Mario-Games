@@ -4,14 +4,14 @@ let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload:
 // -- Fonction preload du jeu :
 function preload() {
     // -- Chargement de nos images utilisées dans le jeux
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-    game.load.image('background', 'assets/background.jpg');
-    game.load.image('peach', 'assets/peach.png');
-    game.load.image('brique', 'assets/brique.png');
-    game.load.image('spikes', 'assets/spikes.png');
+    game.load.spritesheet('dude', 'assets/img/dude.png', 32, 48);
+    game.load.image('background', 'assets/img/background.jpg');
+    game.load.image('peach', 'assets/img/peach.png');
+    game.load.image('brique', 'assets/img/brique.png');
+    game.load.image('spikes', 'assets/img/spikes.png');
     //game.load.image('ground', 'assets/background.jpg');
-    // -- Chargement de nos son utilisé dans le jeux 
-    game.load.audio('musique_fond', 'sounds/musique_fond.mp3');
+    // -- Chargement de notre son utilisé dans le jeux 
+    game.load.audio('musique_fond', 'assets/sounds/musique_fond.mp3');
 }
 
 // --Déclarations de nos variables :
