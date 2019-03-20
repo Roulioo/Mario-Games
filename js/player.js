@@ -19,7 +19,7 @@ function player_create() {
     player.body.setSize(20, 32, 5, 16);
 
     // -- Collision / Gravité / Vélocité pour peach / Taille
-    peach.body.collideWorldBounds = true;
+    peach.body.collideWorldBounds = false;
     peach.body.gravity.y = 1000;
     peach.body.maxVelocity.y = 500;
     peach.scale.setTo(0.025, 0.025); // -- gérer la taille de la princesse 
@@ -47,23 +47,17 @@ function player_update()  {
 
 // -- Function déplacement du leap 
 function player_move_leap() {
-    // -- player.body.velocity.x = 100 * (LEAP.rotation * -1);
 
+    // -- Déplacement du leap motion et des positions personnages 
     if (LEAP.position.x > game.camera.width * 0.5 + MOVE_AREA) {
         player.body.velocity.x = 150;
-    } else if (LEAP.position.x < game.camera.width * 0.5 - MOVE_AREA) {
-        player.body.velocity.x = -150;
-    }
-
-    if (facing != 'left')
-    {
-        player.animations.play('left');
-        facing = 'left';
-    }else if (facing != 'right'){
         player.animations.play('right');
         facing = 'right';
-        // -- player.body.position.x = LEAP.position.x;
-    }else{
+    } else if (LEAP.position.x < game.camera.width * 0.5 - MOVE_AREA) {
+        player.body.velocity.x = -150;
+        player.animations.play('left');
+        facing = 'left';
+    } else{
         if (facing != 'idle'){
             player.animations.stop();
         if (facing == 'left'){
@@ -75,6 +69,7 @@ function player_move_leap() {
         }
     }
 
+    // -- Si on grap alors on active le jump
     if (LEAP.grab && (player.body.onFloor() || player.body.touching.down) && game.time.now > jumpTimer)
     {
         player.body.velocity.y = -500;
