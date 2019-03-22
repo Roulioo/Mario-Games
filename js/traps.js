@@ -1,5 +1,5 @@
 function traps_create() {
-    // Création des plateformes
+    // Création des pièges
 
     trapsGroup = game.add.physicsGroup();
 
@@ -11,7 +11,8 @@ function traps_create() {
         [x, y, width]
     ]
 
-    for (let i = 0; i < 20; i++) {
+    // -- Boucle créations des trappes 
+    for (let i = 0; i < 29; i++) {
         let [x, y, width] = TRAP_POSITIONS[i];
         TRAP_POSITIONS.push([TRAP_POSITIONS[i][0] + 120, y, width]);
         let s = new Phaser.TileSprite(game, x, 545, width, 111, 'spikes');
@@ -19,9 +20,10 @@ function traps_create() {
         trapsGroup.add(s);
     }
 
+    // -- Function gravité et immobilité
     trapsGroup.forEach(item => {
         item.body.immovable = true;
         item.body.allowGravity = false;
     });
-    // --------------------
+    
 }

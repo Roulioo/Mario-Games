@@ -24,7 +24,7 @@ function player_create() {
 
 function peach_create(){
 
-    peach = game.add.sprite(2098, 485, 'peach');
+    peach = game.add.sprite(3098, 485, 'peach');
     game.physics.enable(peach, Phaser.Physics.ARCADE);
 
     // -- Collision / Gravité / Vélocité pour peach / Taille

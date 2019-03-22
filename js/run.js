@@ -30,7 +30,7 @@ let brique;
 let spikes;
 let music;
 let vieText;
-let vie = 3;
+let vie = 5;
 
 //Fonction permettant la création du jeu :
 function create() {
@@ -39,10 +39,10 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // -- Dimension du monde
-    game.world.setBounds(0, 0, 2320, 600);
+    game.world.setBounds(0, 0, 3250, 600);
 
     // -- Affichage de notre background
-    background = game.add.tileSprite(0, 0, 2320, 600, 'background');
+    background = game.add.tileSprite(0, 0, 3250, 600, 'background');
 
     // -- On définit la gravity en y 
     game.physics.arcade.gravity.y = 300;
@@ -73,7 +73,7 @@ function create() {
     music.play();
 
     //Vie :
-    vieText = game.add.text(5, 5, 'Vie(s) : ' + vie, { font: '18px Arial', fill: '#ffffff' });
+    vieText = game.add.text(5, 5, 'Lives : ' + vie, { font: '18px Arial', fill: '#ffffff' });
     vieText.x = 25;
     vieText.y = 25;
     vieText.fixedToCamera = true;
@@ -95,12 +95,12 @@ function update() {
     game.physics.arcade.collide(player, platformsGroup);
     game.physics.arcade.collide(peach, platformsGroup);
     game.physics.arcade.collide(peach, trapsGroup);
-    
+
     //console.log(vie);
     game.physics.arcade.collide(player, trapsGroup, (player, platform) => {
         console.log(vie);
         let minus_vie = vie - 1
-        vieText.setText('Vie(s) : ' + (minus_vie));
+        vieText.setText('Lives : ' + (minus_vie));
         fall.play();
         //console.log("Life :", minus_vie);
         //player = game.add.sprite(32, 320, 'dude');
@@ -109,7 +109,7 @@ function update() {
         facing = 'right';
         player_create();
         vie = minus_vie;
-    })
+    });
 
     if(jumpButton.isDown){
         saut.play();
@@ -133,7 +133,7 @@ function update() {
     // -- Gérer la vie = 0 pour le game over 
 
     if (vie <= 0) {
-        window.location = "gameover.html"; // -- on appelle notre page game over
+        window.location = "game_over.html"; // -- on appelle notre page game over
     }
 
     minus = false;
