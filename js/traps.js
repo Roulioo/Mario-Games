@@ -16,7 +16,6 @@ function traps_create() {
         let [x, y, width] = TRAP_POSITIONS[i];
         TRAP_POSITIONS.push([TRAP_POSITIONS[i][0] + 120, y, width]);
         let s = new Phaser.TileSprite(game, x, 545, width, 111, 'spikes');
-
         trapsGroup.add(s);
     }
 

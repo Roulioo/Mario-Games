@@ -133,7 +133,7 @@ function update() {
     // -- Gérer la vie = 0 pour le game over 
 
     if (vie <= 0) {
-        window.location = "game_over.html"; // -- on appelle notre page game over
+        window.location = "gameover.html"; // -- on appelle notre page game over
     }
 
     minus = false;

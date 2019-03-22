@@ -8,13 +8,40 @@ body{
     /*height: 100%;*/
 }
 
-p{
+.titre{
     color: #CED8F6;
     position : absolute; /* Permet un positionnement avec aucun espace vide après être positionné*/
-    top: 0%; left: 45%;
+    top: 8%; left: 45%;
     /*transform : translate(-50%, -50%);*/
     font-style:italic;
     font-size:60px;
+}
+/*
+.info{
+    color: white;
+    position : absolute; /* Permet un positionnement avec aucun espace vide après être positionné
+    top: 40%; left: 44%;
+    /*transform : translate(-50%, -50%);
+    font-style:italic;
+    font-size:23px; 
+}*/
+
+.info{
+    position: absolute;
+    top:40%;
+    left:44%;
+    border: 0; /* N'avoir aucune bordure sur le bouton */
+    line-height: 2; /* Agrandir l'intérieur du boutton */
+    padding: 0 30px;
+    font-size: 20px;
+    font-style: italic;
+    color:white; /* Couleur texte boutton */
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 25px; /* Arrondi de notre boutton */
+    background-color: #BB2012; /* Couleur texte boutton */;
+    background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+    outline: none; /* Enlever le outline */
 }
 
 .start{
@@ -33,6 +60,8 @@ p{
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
     outline: none; /* Enlever le outline */
 }
+
+
 
 a:link, a:visited{
     text-decoration: none;
