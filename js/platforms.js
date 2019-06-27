@@ -1,7 +1,7 @@
 // -- Fonction pour la création de nos briques 
 function platforms_create() {
 
-    // -- Ajouts d'un objet de type physicsGroup sur nos platforms(briques)
+    // -- Ajouts d'un objet de type physicsGroup sur nos platforms (briques)
     platformsGroup = game.add.physicsGroup();
 
     // -- Tableau des positions de nos briques
@@ -156,15 +156,22 @@ function platforms_create() {
 
     // -- Boucle pour l'affichage de nos briques 
     for (let i = 0; i < PLATFORM_POSITIONS.length; i++) {
+
         let [x, y, width] = PLATFORM_POSITIONS[i];
-        let s = new Phaser.TileSprite(game, x, y, width, 24, 'brique');
-        platformsGroup.add(s);
+
+        let sprites = new Phaser.TileSprite(game, x, y, width, 24, 'brique');
+
+        // -- On ajoute nos éléments de type sprites (briques)
+        platformsGroup.add(sprites);
+
     }
 
-    // -- Gérer la gavité et l'immobilité des éléments briques
+    // -- Gérer la gravité et l'immobilité des éléments briques
     platformsGroup.forEach(item => {
+
         item.body.immovable = true;
         item.body.allowGravity = false;
+        
     });
 
 }

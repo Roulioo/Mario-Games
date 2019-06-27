@@ -90,7 +90,7 @@ a:link, a:visited{
 #auteur{
     color : white;
     position : absolute;
-    top: 17%; left: 56%;
+    bottom: 79%; left: 55%;
     font-style : italic;
-    font-size : 20px;
+    font-size : 25px;
 }

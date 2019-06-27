@@ -3,16 +3,19 @@ let game = new Phaser.Game(960, 600, Phaser.CANVAS, 'phaser-example', { preload:
 
 // -- Fonction preload du jeu :
 function preload() {
+
     // -- Chargement de nos images utilisées dans le jeux
     game.load.spritesheet('mario', 'assets/img/mario_final.png', 40, 40);
     game.load.image('background', 'assets/img/background.jpg');
     game.load.image('peach', 'assets/img/peach.png');
     game.load.image('brique', 'assets/img/brique.png');
     game.load.image('spikes', 'assets/img/spikes.png');
+
     // -- Chargement de nos son utilisé dans le jeux 
     game.load.audio('musique_fond', 'assets/sounds/musique_fond.mp3');
     game.load.audio('saut', 'assets/sounds/saut.mp3');
     game.load.audio('fall', 'assets/sounds/fall.mp3');
+
 }
 
 // --Déclarations de nos variables :
@@ -55,8 +58,10 @@ function create() {
 
     // -- Rentrer en collision avec les limites du monde comme s'il s'aggissait d'éléments rigides
     player.body.collideWorldBounds = true;
+
     // -- Immobilité du joueur 
     peach.body.immovable = false;
+
     // -- Gravité lors de la descente 
     peach.body.allowGravity = true;
 
@@ -64,7 +69,7 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-    // -- Ajout de notre son au jeux
+    // -- Ajout de nos sons au jeux
     music = game.add.audio('musique_fond');
     saut = game.add.audio('saut');
     fall = game.add.audio('fall');
@@ -72,7 +77,7 @@ function create() {
     // -- Play de la music
     music.play();
 
-    //Vie :
+    // -- Vie :
     vieText = game.add.text(5, 5, 'Lives : ' + vie, { font: '18px Arial', fill: '#ffffff' });
     vieText.x = 25;
     vieText.y = 25;
@@ -84,37 +89,47 @@ function create() {
 
 function update() {
 
-    // -- Centrer le canvas 
+    // -- Centrer le canvas dans la page 
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
     game.scale.refresh();
-
-    //game.physics.arcade.collide(player, ground);
 
     // -- on gère les collisions sur les différents personnages et objet
     game.physics.arcade.collide(player, platformsGroup);
     game.physics.arcade.collide(peach, platformsGroup);
     game.physics.arcade.collide(peach, trapsGroup);
 
-    //console.log(vie);
     game.physics.arcade.collide(player, trapsGroup, (player, platform) => {
+
         console.log(vie);
+
+        // -- Affichage de la vie 
         let minus_vie = vie - 1
         vieText.setText('Lives : ' + (minus_vie));
+
+        // -- Jouer le son de chute
         fall.play();
-        //console.log("Life :", minus_vie);
-        //player = game.add.sprite(32, 320, 'dude');
+
+        // -- Mario meurt
         player.kill();
-        //peach.kill();
+
+        // -- Positionnement de mario droite
         facing = 'right';
+
+        // -- On créer de nouveau Mario
         player_create();
+
+        // -- Lives 
         vie = minus_vie;
+
     });
 
+    // -- Gérer la musique du saut si il a lieu
     if(jumpButton.isDown){
         saut.play();
     }
 
+    // -- Si jamais une collision a lieu entre mario et peach 
     game.physics.arcade.collide(player, peach, (player, platform) => {
         window.location = "victoire.html"; // -- on appelle notre page victoire 
     });
@@ -125,30 +140,25 @@ function update() {
     // -- déplacement de la caméra en fonction du joueur
     game.camera.follow(player);
 
-    //ground.position.x = game.camera.position.x;
-
     // -- on appelle notre fonction update du player
     player_update();
 
-    // -- Gérer la vie = 0 pour le game over 
-
+    // -- Si la vie <= 0 alors game over 
     if (vie <= 0) {
         window.location = "gameover.html"; // -- on appelle notre page game over
     }
-
-    minus = false;
 
 }
 
 // -- Fonction du rendu de jeu :
 function render() {
 
-    //game.debug.text(game.time.physicsElapsed, 32, 32);
+    // game.debug.text(game.time.physicsElapsed, 32, 32);
     // game.debug.body(player);
-    //game.debug.body(ground);
-    //game.debug.body(peach);
-    //game.debug.body(brique);
-    //game.debug.bodyInfo(player, 16, 24);
-    //game.debug.soundInfo(music, 20, 32);
+    // game.debug.body(ground);
+    // game.debug.body(peach);
+    // game.debug.body(brique);
+    // game.debug.bodyInfo(player, 16, 24);
+    // game.debug.soundInfo(music, 20, 32);
 
 }
