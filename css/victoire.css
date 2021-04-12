@@ -1,0 +1,67 @@
+body {
+    margin:0;
+    padding:0;
+    /* background-image: url("../assets/img/mario-peach.gif"); */
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;   
+    /* background-size: cover; */
+    background-color: black;
+}
+
+img{
+    position: absolute;
+    top: 30%;
+    left :32%;
+}
+
+#victoire{
+    position: absolute;
+    top: 12rem;
+    left : 7.5rem;
+    width: 700px;
+    font-style: italic;
+    font-size: 250%;
+    color: white;
+}
+
+p{
+    position: absolute;
+    top:-12rem;
+    left : 53%;
+    font-style: italic;
+    font-size: 120%;
+    color: white;
+}
+
+span{
+    position: absolute;
+    top:80%;
+    left: 44%;
+    font-style: italic;
+    font-size: 120%;
+    color: white;
+}
+
+#auteur{
+    color : white;
+    position : absolute;
+    top: 94%; left: 1%;
+    font-style : italic;
+    font-size : 30px;
+}
+
+span{
+    position: absolute;
+    top:80%;
+    left:40%;
+    border: 0; /* N'avoir aucune bordure sur le bouton */
+    line-height: 2.5; /* Agrandir l'intérieur du boutton */
+    padding: 0 70px;
+    font-size: 1.5rem;
+    color: #BB2012; /* Couleur texte boutton */
+    border-radius: 25px; /* Arrondi de notre boutton */
+    background-color: white;
+    background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+    outline: none; /* Enlever le outline */
+}

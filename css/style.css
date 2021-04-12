@@ -1,0 +1,96 @@
+body{
+    /*background-image: url(../gif/sapin.gif);*/
+    background-image: url("../assets/img/accueil.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+.titre{
+    color: #CED8F6;
+    position : absolute; /* Permet un positionnement avec aucun espace vide après être positionné*/
+    top: 8%; left: 45%;
+    /*transform : translate(-50%, -50%);*/
+    font-style:italic;
+    font-size:60px;
+}
+/*
+.info{
+    color: white;
+    position : absolute; /* Permet un positionnement avec aucun espace vide après être positionné
+    top: 40%; left: 44%;
+    /*transform : translate(-50%, -50%);
+    font-style:italic;
+    font-size:23px; 
+}*/
+
+.info{
+    position: absolute;
+    top:40%;
+    left:44%;
+    border: 0; /* N'avoir aucune bordure sur le bouton */
+    line-height: 2; /* Agrandir l'intérieur du boutton */
+    padding: 0 30px;
+    font-size: 20px;
+    font-style: italic;
+    color:white; /* Couleur texte boutton */
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 25px; /* Arrondi de notre boutton */
+    background-color: #BB2012; /* Couleur texte boutton */;
+    background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+    outline: none; /* Enlever le outline */
+}
+
+.start{
+    position: absolute;
+    top:60%;
+    left:70%;
+    border: 0; /* N'avoir aucune bordure sur le bouton */
+    line-height: 2.5; /* Agrandir l'intérieur du boutton */
+    padding: 0 70px;
+    font-size: 2rem;
+    color: #fff; /* Couleur texte boutton */
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 25px; /* Arrondi de notre boutton */
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+    outline: none; /* Enlever le outline */
+}
+
+
+
+a:link, a:visited{
+    text-decoration: none;
+    color:white;
+}
+
+.start:hover{
+    background-color: rgba(255, 0, 0, 1);
+}
+
+/*
+.start:active{
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+*/
+
+#access_game{
+    color:white;
+    position : absolute;
+    top: 90%; left: 74%;
+    /*transform : translate(-50%, -50%);*/
+    font-style:italic;
+    font-size:30px;
+}
+
+#auteur{
+    color : white;
+    position : absolute;
+    bottom: 79%; left: 55%;
+    font-style : italic;
+    font-size : 25px;
+}
