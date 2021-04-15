@@ -1,17 +1,22 @@
-# Jeu Mario avec Leap Motion
+# Virtual-museum
 
-Simple jeu Mario, fonctionnant avec un Leap Motion
+Integration about a museum site template.
 
-## Installer le projet
+# Technologies
 
-Clonez le repository et installez les dépendances : `npm install`
+- HTML
+- CSS
+- Javascript
+- Phaser
 
-## Lancer le jeu
+# How to test
 
-Positionnez-vous dans le répertoire et lancez la commande suivante :
+1. Go to current folder of project in terminal
+2. Run "live-server"
+3. Server will be launched for me is (http://127.0.0.1:8080/)
+4. Go to your url
+5. Enjoy !
 
-`npm start`
+# Information
 
-Naviguez ensuite vers l'URL : `http://127.0.0.1:8080`
-
-Vous pouvez contrôler le pad grâce à la souris ou grâce au Leap Motion si il est branché ! Enjoy! 🙂
+I can be contacted for any information by email: julioocesarr@outlook.fr
